@@ -1,11 +1,11 @@
 #!/bin/bash
 
-#系统信息
-#指令集
+#system message
+#Instruction Set
 machine=""
-#什么系统
+#What system
 release=""
-#系统版本号
+#System version number
 systemVersion=""
 debian_package_manager=""
 redhat_package_manager=""
@@ -1442,7 +1442,7 @@ install_bbr()
 readProtocolConfig()
 {
     echo -e "\\n\\n\\n"
-    tyblue "---------------------请选择传输层协议---------------------"
+    tyblue "---------------------Please select the transport layer protocol---------------------"
     tyblue " 1. TCP"
     tyblue " 2. gRPC"
     tyblue " 3. WebSocket"
@@ -1450,13 +1450,13 @@ readProtocolConfig()
     tyblue " 5. TCP + WebSocket"
     tyblue " 6. gRPC + WebSocket"
     tyblue " 7. TCP + gRPC + WebSocket"
-    yellow " 0. 无 (仅提供Web服务)"
+    yellow " 0. None (only web service provided)"
     echo
-    blue   " 注："
-    blue   "   1. 不知道什么是CDN或不使用CDN，请选择TCP"
-    blue   "   2. gRPC和WebSocket支持通过CDN，关于两者的区别，详见：https://github.com/kirin10000/Xray-script#关于grpc与websocket"
-    blue   "   3. 只有TCP能使用XTLS，且XTLS完全兼容TLS"
-    blue   "   4. 能使用TCP传输的只有VLESS"
+    blue   " Note："
+    blue   "   1. I don't know what CDN is or don't use CDN, please choose TCP"
+    blue   "   2. gRPC and WebSocket support CDN. For the difference between the two, see: https://github.com/kirin10000/Xray-script#About grpc and websocket"
+    blue   "   3. Only TCP can use XTLS, and XTLS is fully compatible with TLS"
+    blue   "   4. Only VLESS can use TCP transmission"
     echo
     local choice=""
     while [[ ! "$choice" =~ ^(0|[1-9][0-9]*)$ ]] || ((choice>7))
