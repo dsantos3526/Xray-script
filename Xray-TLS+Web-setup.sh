@@ -2770,55 +2770,55 @@ print_config_info()
             purple "  (V2RayN选择\"添加[VMess]服务器\";V2RayNG选择\"手动输入[Vmess]\")"
         fi
         if [ ${#domain_list[@]} -eq 1 ]; then
-            tyblue " address(地址)         ：\\033[33m${domain_list[*]}"
+            tyblue " address(address)         ：\\033[33m${domain_list[*]}"
         else
-            tyblue " address(地址)         ：\\033[33m${domain_list[*]} \\033[35m(任选其一)"
+            tyblue " address(address)         ：\\033[33m${domain_list[*]} \\033[35m(Choose one)"
         fi
-        purple "  (Qv2ray:主机)"
-        tyblue " port(端口)            ：\\033[33m443"
-        tyblue " id(用户ID/UUID)       ：\\033[33m${xid_3}"
+        purple "  (Qv2ray:Host)"
+        tyblue " port(port)            ：\\033[33m443"
+        tyblue " id(User ID/UUID)       ：\\033[33m${xid_3}"
         if [ $protocol_3 -eq 1 ]; then
-            tyblue " flow(流控)            ：\\033[33m空"
-            tyblue " encryption(加密)      ：\\033[33mnone"
+            tyblue " flow(Flow Control)            ：\\033[33m空"
+            tyblue " encryption(encryption)      ：\\033[33mnone"
         else
-            tyblue " alterId(额外ID)       ：\\033[33m0"
-            tyblue " security(加密方式)    ：使用CDN，推荐\\033[33mauto\\033[36m;不使用CDN，推荐\\033[33mnone"
-            purple "  (Qv2ray:安全选项;Shadowrocket:算法)"
+            tyblue " alterId(Extra ID)       ：\\033[33m0"
+            tyblue " security(Encryption)    ：Use CDN, recommended \\033[33mauto\\033[36m;Do not use CDN, recommended \\033[33mnone"
+            purple "  (Qv2ray:Security options; Shadowrocket: algorithm)"
         fi
-        tyblue " ---Transport/StreamSettings(底层传输方式/流设置)---"
-        tyblue "  network(传输方式)             ：\\033[33mws"
-        purple "   (Shadowrocket传输方式选websocket)"
-        tyblue "  path(路径)                    ：\\033[33m${path}?ed=2048"
+        tyblue " ---Transport/StreamSettings(Bottom transmission mode/stream setting)---"
+        tyblue "  network(transfer method)             ：\\033[33mws"
+        purple "   (Shadowrocket Transmission method selection websocket)"
+        tyblue "  path(path)                    ：\\033[33m${path}?ed=2048"
         tyblue "  Host                          ：\\033[33m空"
-        purple "   (V2RayN(G):伪装域名;Qv2ray:协议设置-请求头)"
-        tyblue "  security(传输层加密)          ：\\033[33mtls"
-        purple "   (V2RayN(G):底层传输安全;Qv2ray:TLS设置-安全类型)"
+        purple "   (V2RayN(G):Disguise domain name; Qv2ray: protocol settings-request header)"
+        tyblue "  security(Transport layer encryption)          ：\\033[33mtls"
+        purple "   (V2RayN(G):Low-level transmission security; Qv2ray: TLS settings-security type)"
         tyblue "  serverName                    ：\\033[33m空"
-        purple "   (V2RayN(G):SNI和伪装域名;Qv2ray:TLS设置-服务器地址;Shadowrocket:Peer 名称)"
+        purple "   (V2RayN(G):SNIAnd fake domain name; Qv2ray: TLS setting-server address; Shadowrocket: Peer name)"
         tyblue "  allowInsecure                 ：\\033[33mfalse"
-        purple "   (Qv2ray:TLS设置-允许不安全的证书(不打勾);Shadowrocket:允许不安全(关闭))"
-        tyblue "  alpn                          ：此参数不生效，可随意设置"
-        purple "   (Qv2ray:TLS设置-ALPN) (注意Qv2ray如果要设置alpn为h2,http/1.1，请填写\"h2|http/1.1\")"
-        tyblue " ------------------------其他-----------------------"
-        tyblue "  Mux(多路复用)                 ：建议关闭"
-        purple "   (V2RayN:设置页面-开启Mux多路复用)"
+        purple "   (Qv2ray:TLSSettings-Allow insecure certificates (uncheck); Shadowrocket: Allow insecure (close))"
+        tyblue "  alpn                          ：This parameter is not effective and can be set at will"
+        purple "   (Qv2ray: TLS setting-ALPN) (Note that if Qv2ray wants to set alpn to h2, http/1.1, please fill in \"h2|http/1.1\")"
+        tyblue " ------------------------other-----------------------"
+        tyblue "  Mux(Multiplexing)                 ：Suggest to close"
+        purple "   (V2RayN: Settings page-turn on Mux multiplexing)"
         tyblue "------------------------------------------------------------------------"
     fi
     echo
-    ask_if "是否生成分享链接？(y/n)" && print_share_link
+    ask_if "Whether to generate a share link？(y/n)" && print_share_link
     echo
     yellow " 关于fingerprint与alpn，详见：https://github.com/kirin10000/Xray-script#关于tls握手tls指纹和alpn"
     echo
-    blue   " 若想实现Fullcone(NAT类型开放)，需要达成以下条件："
-    blue   "   1. 确保客户端核心为 Xray v1.3.0+"
-    blue   "   2. 若您正在使用Netch作为客户端，请不要使用模式 [1] 连接 (可使用模式 [3] Bypass LAN )"
-    blue   "   3. 如果测试系统为Windows，并且正在使用透明代理或TUN/Bypass LAN，请确保当前网络设置为专用网络"
+    blue   " If you want to achieve Fullcone (NAT type open), you need to meet the following conditions："
+    blue   "   1. Make sure the client core is Xray v1.3.0+"
+    blue   "   2. If you are using Netch as the client, please do not use the mode [1] connection (the mode can be used[3] Bypass LAN )"
+    blue   "   3. If the test system is Windows and transparent proxy or TUN/Bypass LAN is being used, please make sure that the current network is set to a private network"
     echo
-    blue   " 若想实现WebSocket 0-rtt，请将客户端核心升级至 Xray v1.4.0+"
+    blue   " If you want to implement WebSocket 0-rtt, please upgrade the client core to Xray v1.4.0+"
     echo
-    tyblue " 脚本最后更新时间：2021.09.10"
+    tyblue " Script last updated time：2021.09.10"
     echo
-    red    " 此脚本仅供交流学习使用，请勿使用此脚本行违法之事。网络非法外之地，行非法之事，必将接受法律制裁!!!!"
+    red    " This script is for communication and learning purposes only, please do not use this script to commit illegal things. In places where the Internet is illegal, if you do illegal things, you will be subject to legal sanctions.!!!!"
     tyblue " 2020.11"
 }
 
@@ -3025,7 +3025,7 @@ full_install_php()
     cd /
     rm -rf "$temp_dir"
 }
-#安装/检查更新/更新php
+#Install/check for updates/updates php
 install_check_update_update_php()
 {
     [ "$redhat_package_manager" == "yum" ] && check_important_dependence_installed "" "yum-utils"
@@ -3034,22 +3034,22 @@ install_check_update_update_php()
     check_important_dependence_installed tzdata tzdata
     get_system_info
     if ([ $release == "centos" ] && ! version_ge "$systemVersion" "8" ) || ([ $release == "rhel" ] && ! version_ge "$systemVersion" "8") || ([ $release == "fedora" ] && ! version_ge "$systemVersion" "30") || ([ $release == "ubuntu" ] && ! version_ge "$systemVersion" "20.04") || ([ $release == "debian" ] && ! version_ge "$systemVersion" "10") || ([ $release == "deepin" ] && ! version_ge "$systemVersion" "20"); then
-        red "系统版本过低！"
-        tyblue "安装Nextcloud需要安装php"
-        yellow "仅支持在以下版本系统下安装php："
+        red "System version is too low！"
+        tyblue "Install Nextcloud need to install php"
+        yellow "Only support the installation of php under the following versions of the system："
         yellow " 1. Ubuntu 20.04+"
         yellow " 2. Debian 10+"
         yellow " 3. Deepin 20+"
-        yellow " 4. 其他以 Debian 10+ 为基的系统"
+        yellow " 4. Other Debian 10+ based systems"
         yellow " 5. Red Hat Enterprise Linux 8+"
         yellow " 6. CentOS 8+"
         yellow " 7. Fedora 30+"
-        yellow " 8. 其他以 Red Hat 8+ 为基的系统"
+        yellow " 8. Other Red Hat 8+-based systems"
         return 1
     elif [ $release == "other-debian" ] || [ $release == "other-redhat" ]; then
-        yellow "未知的系统！"
-        tyblue "安装Nextcloud需要安装php"
-        yellow "仅支持在以下版本系统下安装php："
+        yellow "Unknown system！"
+        tyblue "Install Nextcloud need to install php"
+        yellow "Only support the installation of php under the following versions of the system："
         yellow " 1. Ubuntu 20.04+"
         yellow " 2. Debian 10+"
         yellow " 3. Deepin 20+"
@@ -3354,7 +3354,7 @@ change_pretend()
         change=0
     else
         local i
-        tyblue "-----------------------请选择要修改伪装类型的域名-----------------------"
+        tyblue "-----------------------Please select the domain name to modify the disguise type-----------------------"
         for i in "${!domain_list[@]}"
         do
             if [ ${domain_config_list[$i]} -eq 1 ]; then
@@ -3363,10 +3363,10 @@ change_pretend()
                 tyblue " $((i+1)). ${domain_list[$i]}"
             fi
         done
-        yellow " 0. 不修改"
+        yellow " 0. Do not modify"
         while ! [[ "$change" =~ ^([1-9][0-9]*|0)$ ]] || [ $change -gt ${#domain_list[@]} ]
         do
-            read -p "你的选择是：" change
+            read -p "Your choice is：" change
         done
         [ $change -eq 0 ] && return 0
         ((change--))
@@ -3464,33 +3464,33 @@ change_xray_id()
 {
     get_config_info
     local flag=""
-    tyblue "-------------请输入你要修改的id-------------"
-    tyblue " 1. TCP的id"
-    tyblue " 2. gRPC的id"
-    tyblue " 3. WebSocket的id"
+    tyblue "-------------Please enter what you want to modify id-------------"
+    tyblue " 1. TCP of id"
+    tyblue " 2. gRPC of id"
+    tyblue " 3. WebSocket of id"
     echo
     while [[ ! "$flag" =~ ^([1-9][0-9]*)$ ]] || ((flag>3))
     do
-        read -p "您的选择是：" flag
+        read -p "Your choice is：" flag
     done
     local temp_protocol="protocol_$flag"
     if [ ${!temp_protocol} -eq 0 ]; then
-        red "没有使用该协议！"
+        red "Not using the protocol！"
         return 1
     fi
     local xid="xid_$flag"
-    tyblue "您现在的id是：${!xid}"
-    ! ask_if "是否要继续?(y/n)" && return 0
+    tyblue "Your current id is：${!xid}"
+    ! ask_if "Do you want to continue?(y/n)" && return 0
     while true
     do
         xid=""
         while [ -z "$xid" ]
         do
-            tyblue "-------------请输入新的id-------------"
+            tyblue "-------------Please enter a new id-------------"
             read xid
         done
-        tyblue "您输入的id是：$xid"
-        ask_if "是否确定?(y/n)" && break
+        tyblue "The id you entered is：$xid"
+        ask_if "Are you sure ?(y/n)" && break
     done
     if [ $flag -eq 1 ]; then
         xid_1="$xid"
@@ -3535,17 +3535,17 @@ change_xray_path()
 {
     get_config_info
     if [ $protocol_3 -eq 0 ]; then
-        red "没有使用WebSocket协议！"
+        red "No WebSocket protocol used！"
         return 1
     fi
-    tyblue "您现在的path是：$path"
-    ! ask_if "是否要继续?(y/n)" && return 0
+    tyblue "Your current path is：$path"
+    ! ask_if "Do you want to continue?(y/n)" && return 0
     while true
     do
         path=""
         while [ -z "$path" ]
         do
-            tyblue "---------------请输入新的path(/+字母数字组合)---------------"
+            tyblue "---------------Please enter a new path (/+alphanumeric combination)---------------"
             read path
         done
         tyblue "您输入的path是：$path"
@@ -3553,13 +3553,13 @@ change_xray_path()
     done
     config_xray
     systemctl -q is-active xray && systemctl restart xray
-    green "更换成功！！"
+    green "Replaced successfully！！"
     print_config_info
 }
 simplify_system()
 {
     if systemctl -q is-active xray || systemctl -q is-active nginx || systemctl -q is-active php-fpm; then
-        yellow "请先停止Xray-TLS+Web"
+        yellow "Please stop first Xray-TLS+Web"
         return 1
     fi
     [ "$redhat_package_manager" == "yum" ] && check_important_dependence_installed "" "yum-utils"
@@ -3567,20 +3567,20 @@ simplify_system()
     check_important_dependence_installed tzdata tzdata
     get_system_info
     check_important_dependence_installed "procps" "procps-ng"
-    yellow "警告："
-    tyblue " 1. 此功能可能导致某些VPS无法开机，请谨慎使用"
-    tyblue " 2. 如果VPS上部署了 Xray-TLS+Web 以外的东西，可能被误删"
-    ! ask_if "是否要继续?(y/n)" && return 0
+    yellow "warn："
+    tyblue " 1. This function may cause some VPS to fail to boot, please use it with caution"
+    tyblue " 2. If something other than Xray-TLS+Web is deployed on the VPS, it may be deleted by mistake "
+    ! ask_if "Do you want to continue ?(y/n)" && return 0
     echo
-    yellow "提示：在精简系统前请先设置apt/yum/dnf的软件源为http/ftp而非https/ftps"
-    purple "通常来说系统默认即是http/ftp"
-    ! ask_if "是否要继续?(y/n)" && return 0
+    yellow "Tip: Before streamlining the system, please set the software source of apt/yum/dnf to http/ftp instead of https/ftps"
+    purple "Generally speaking, the system default is http/ftp"
+    ! ask_if "Do you want to continue ?(y/n)" && return 0
     echo
     local save_ssh=0
-    yellow "提示：精简系统可能导致ssh配置文件(/etc/ssh/sshd_config)恢复默认"
-    tyblue "这可能导致ssh端口恢复默认(22)，且有些系统默认仅允许密钥登录(不允许密码登录)"
-    tyblue "你可以自己备份ssh文件或使用脚本自动备份"
-    ask_if "是否备份ssh配置文件?(y/n)" && save_ssh=1
+    yellow "Tip: Streamlining the system may cause the ssh configuration file (/etc/ssh/sshd_config) to be restored to the default"
+    tyblue "This may cause the ssh port to return to the default (22), and some systems only allow key login by default (password login is not allowed)"
+    tyblue "You can back up the ssh file yourself or use a script to back up automatically"
+    ask_if "Whether to backup the ssh configuration file ?(y/n)" && save_ssh=1
     if [ $save_ssh -eq 1 ]; then
         enter_temp_dir
         cp /etc/ssh/sshd_config sshd_config
@@ -3639,23 +3639,23 @@ simplify_system()
 }
 repair_tuige()
 {
-    yellow "尝试修复退格键异常问题，退格键正常请不要修复"
-    ! ask_if "是否要继续?(y/n)" && return 0
+    yellow "Try to fix the abnormal problem of the backspace key, please don't fix it if the backspace key is normal"
+    ! ask_if "Do you want to continue ?(y/n)" && return 0
     if stty -a | grep -q 'erase = ^?'; then
         stty erase '^H'
     elif stty -a | grep -q 'erase = ^H'; then
         stty erase '^?'
     fi
-    green "修复完成！！"
+    green "Repair complete！！"
 }
 change_dns()
 {
-    red    "注意！！"
-    red    "1.部分云服务商(如阿里云)使用本地服务器作为软件包源，修改dns后需要换源！！"
-    red    "  如果不明白，那么请在安装完成后再修改dns，并且修改完后不要重新安装"
-    red    "2.Ubuntu系统重启后可能会恢复原dns"
-    tyblue "此操作将修改dns服务器为1.1.1.1和1.0.0.1(cloudflare公共dns)"
-    ! ask_if "是否要继续?(y/n)" && return 0
+    red    "Notice！！"
+    red    "1.Some cloud service providers (such as Alibaba Cloud) use a local server as the source of the package, and the source needs to be changed after modifying the dns！！"
+    red    "  If you don’t understand, please modify dns after installation, and do not reinstall after modification"
+    red    "2.Ubuntu After the system restarts, it may be restored to the original dns"
+    tyblue "This operation will modify the dns server to 1.1.1.1 and 1.0.0.1 (cloudflare public dns)"
+    ! ask_if "Do you want to continue ?(y/n)" && return 0
     if ! grep -q "#This file has been edited by Xray-TLS-Web-setup-script" /etc/resolv.conf; then
         sed -i 's/^[ \t]*nameserver[ \t][ \t]*/#&/' /etc/resolv.conf
         {
@@ -3665,24 +3665,24 @@ change_dns()
             echo '#This file has been edited by Xray-TLS-Web-setup-script'
         } >> /etc/resolv.conf
     fi
-    green "修改完成！！"
+    green "Modification is complete！！"
 }
-#开始菜单
+#Start Menu
 start_menu()
 {
     local xray_status
-    [ $xray_is_installed -eq 1 ] && xray_status="\\033[32m已安装" || xray_status="\\033[31m未安装"
+    [ $xray_is_installed -eq 1 ] && xray_status="\\033[32m It has been installed" || xray_status="\\033[31m未安装"
     systemctl -q is-active xray && xray_status+="                \\033[32m运行中" || xray_status+="                \\033[31m未运行"
     local nginx_status
-    [ $nginx_is_installed -eq 1 ] && nginx_status="\\033[32m已安装" || nginx_status="\\033[31m未安装"
+    [ $nginx_is_installed -eq 1 ] && nginx_status="\\033[32m It has been installed" || nginx_status="\\033[31m未安装"
     systemctl -q is-active nginx && nginx_status+="                \\033[32m运行中" || nginx_status+="                \\033[31m未运行"
     local php_status
-    [ $php_is_installed -eq 1 ] && php_status="\\033[32m已安装" || php_status="\\033[31m未安装"
+    [ $php_is_installed -eq 1 ] && php_status="\\033[32m It has been installed" || php_status="\\033[31m未安装"
     systemctl -q is-active php-fpm && php_status+="                \\033[32m运行中" || php_status+="                \\033[31m未运行"
     local cloudreve_status
     [ $cloudreve_is_installed -eq 1 ] && cloudreve_status="\\033[32m已安装" || cloudreve_status="\\033[31m未安装"
     systemctl -q is-active cloudreve && cloudreve_status+="                \\033[32m运行中" || cloudreve_status+="                \\033[31m未运行"
-    tyblue "------------------------ Xray-TLS+Web 搭建/管理脚本 ------------------------"
+    tyblue "------------------------ Xray-TLS+Web Build/manage script ------------------------"
     echo
     tyblue "           Xray   ：           ${xray_status}"
     echo
@@ -3694,73 +3694,73 @@ start_menu()
     echo
     tyblue "       官网：https://github.com/kirin10000/Xray-script"
     echo
-    tyblue "----------------------------------注意事项----------------------------------"
-    yellow " 1. 此脚本需要一个解析到本服务器的域名"
-    tyblue " 2. 此脚本安装时间较长，建议在安装前阅读："
-    tyblue "      https://github.com/kirin10000/Xray-script#安装时长说明"
-    green  " 3. 建议在纯净的系统上使用此脚本 (VPS控制台-重置系统)"
+    tyblue "----------------------------------Precautions----------------------------------"
+    yellow " 1. This script requires a domain name that resolves to this server"
+    tyblue " 2. This script takes a long time to install, it is recommended to read before installing："
+    tyblue "      https://github.com/kirin10000/Xray-script#Installation time description"
+    green  " 3. It is recommended to use this script on a pure system (VPS console-reset system)"
     tyblue "----------------------------------------------------------------------------"
     echo
     echo
-    tyblue " -----------安装/更新/卸载-----------"
+    tyblue " -----------Install/Update/Uninstall-----------"
     if [ $is_installed -eq 0 ]; then
-        green  "   1. 安装Xray-TLS+Web"
+        green  "   1. Install Xray-TLS+Web"
     else
-        green  "   1. 重新安装Xray-TLS+Web"
+        green  "   1. re-install Xray-TLS+Web"
     fi
-    purple "         流程：[更新系统组件]->[安装bbr]->[安装php]->安装Nginx->安装Xray->申请证书->配置文件->[安装/配置Cloudreve]"
-    green  "   2. 更新Xray-TLS+Web"
-    purple "         流程：更新脚本->[更新系统组件]->[更新bbr]->[更新php]->[更新Nginx]->更新Xray->更新证书->更新配置文件->[更新Cloudreve]"
-    tyblue "   3. 检查更新/更新脚本"
-    tyblue "   4. 更新系统组件"
-    tyblue "   5. 安装/检查更新/更新bbr"
-    purple "         包含：bbr2/bbrplus/bbr魔改版/暴力bbr魔改版/锐速"
-    tyblue "   6. 安装/检查更新/更新php"
-    tyblue "   7. 检查更新/更新Nginx"
-    tyblue "   8. 更新Cloudreve"
-    tyblue "   9. 更新Xray"
-    red    "  10. 卸载Xray-TLS+Web"
-    red    "  11. 卸载php"
-    red    "  12. 卸载Cloudreve"
+    purple "         Process: [Update System Components]->[Install bbr]->[Install php]->Install Nginx->Install Xray->Apply for Certificate->Configuration File->[Install/Configure Cloudreve]"
+    green  "   2. renew Xray-TLS+Web"
+    purple "         Process: update script->[update system components]->[update bbr]->[update php]->[update Nginx]->update Xray->update certificate->update configuration file->[update Cloudreve]"
+    tyblue "   3. Check for updates/update scripts"
+    tyblue "   4. Update system components"
+    tyblue "   5. Install/check for updates/update bbr"
+    purple "         Contains: bbr2/bbrplus/bbr magic revision / violence bbr magic revision / sharp speed"
+    tyblue "   6. Install/check for updates/updatesphp"
+    tyblue "   7. Check for updates/updates Nginx"
+    tyblue "   8. renew Cloudreve"
+    tyblue "   9. renew Xray"
+    red    "  10. Uninstall Xray-TLS+Web"
+    red    "  11. Uninstall php"
+    red    "  12. Uninstall Cloudreve"
     echo
-    tyblue " --------------启动/停止-------------"
-    tyblue "  13. 启动/重启Xray-TLS+Web"
-    tyblue "  14. 停止Xray-TLS+Web"
+    tyblue " --------------start stop-------------"
+    tyblue "  13. Start/restart Xray-TLS+Web"
+    tyblue "  14. Stop Xray-TLS+Web"
     echo
-    tyblue " ----------------管理----------------"
-    tyblue "  15. 查看配置信息"
-    tyblue "  16. 重置域名"
-    purple "         将删除所有域名配置，安装过程中域名输错了造成Xray无法启动可以用此选项修复"
-    tyblue "  17. 添加域名"
-    tyblue "  18. 删除域名"
-    tyblue "  19. 修改伪装网站类型"
-    tyblue "  20. 重新安装Cloudreve"
-    purple "         将删除所有Cloudreve网盘的文件和帐户信息，管理员密码忘记可用此选项恢复"
-    tyblue "  21. 修改传输协议"
-    tyblue "  22. 修改id(用户ID/UUID)"
-    tyblue "  23. 修改gRPC的serviceName"
-    tyblue "  24. 修改WebSocket的path(路径)"
+    tyblue " ----------------manage----------------"
+    tyblue "  15. View configuration information"
+    tyblue "  16. Reset domain name"
+    purple "         All domain name configurations will be deleted. During the installation process, the domain name was entered incorrectly and Xray could not be started. This option can be used to fix"
+    tyblue "  17. Add domain name"
+    tyblue "  18. Delete domain name"
+    tyblue "  19. Modify the type of disguised website"
+    tyblue "  20. re-installCloudreve"
+    purple "         All files and account information of Cloudreve will be deleted. If the administrator password is forgotten, this option can be used to recover"
+    tyblue "  21. Modify the transmission protocol"
+    tyblue "  22. Revise id(user ID/UUID)"
+    tyblue "  23. Modify the serviceName of gRPC"
+    tyblue "  24. Modify the path of WebSocket"
     echo
-    tyblue " ----------------其它----------------"
-    tyblue "  25. 精简系统"
-    purple "         删除不必要的系统组件，即使已经安装 Xray-TLS+Web 仍然可以使用此功能"
-    tyblue "  26. 尝试修复退格键无法使用的问题"
-    purple "         部分ssh工具(如Xshell)可能有这类问题"
-    tyblue "  27. 修改dns"
-    yellow "  0. 退出脚本"
+    tyblue " ----------------other----------------"
+    tyblue "  25. Streamline the system"
+    purple "         Remove unnecessary system components, even if Xray-TLS+Web has been installed, you can still use this function"
+    tyblue "  26. Try to fix the problem that the backspace key cannot be used"
+    purple "         Some ssh tools (such as Xshell) may have such problems"
+    tyblue "  27. Revise dns"
+    yellow "  0. Exit script"
     echo
     echo
     local choice=""
     while [[ ! "$choice" =~ ^(0|[1-9][0-9]*)$ ]] || ((choice>27))
     do
-        read -p "您的选择是：" choice
+        read -p "Your choice is：" choice
     done
     if (( choice==2 || (7<=choice&&choice<=9) || choice==13 || (15<=choice&&choice<=24) )) && [ $is_installed -eq 0 ]; then
-        red "请先安装Xray-TLS+Web！！"
+        red "Please install first Xray-TLS+Web！！"
         return 1
     fi
     if (( 17<=choice&&choice<=20 )) && ! (systemctl -q is-active nginx && systemctl -q is-active xray); then
-        red "请先启动Xray-TLS+Web！！"
+        red "Please start Xray-TLS+Web！！"
         return 1
     fi
     if [ $choice -eq 1 ]; then
