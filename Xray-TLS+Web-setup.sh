@@ -10,14 +10,14 @@ systemVersion=""
 debian_package_manager=""
 redhat_package_manager=""
 redhat_package_manager_enhanced=""
-#CPU线程数
+#CPU threads
 cpu_thread_num=""
-#现在有没有通过脚本启动swap
+#Are there any scripts to start swap now?
 using_swap_now=0
-#系统时区
+#System time zone
 timezone=""
 
-#安装信息
+#Installation Information
 nginx_version="nginx-1.21.3"
 openssl_version="openssl-openssl-3.0.0"
 nginx_prefix="/usr/local/nginx"
@@ -47,19 +47,19 @@ is_installed=""
 update=""
 in_install_update_xray_tls_web=0
 
-#配置信息
-#域名列表 两个列表用来区别 www.主域名
+#Configuration information
+#Domain name list Two lists are used to distinguish the main domain name of www.
 unset domain_list
 unset true_domain_list
 unset domain_config_list
-#域名伪装列表，对应域名列表
+#Domain name disguise list, corresponding domain name list
 unset pretend_list
 
-# TCP使用的会话层协议，0代表禁用，1代表VLESS
+# TCPThe session layer protocol used, 0 means disabled, 1 means VLESS
 protocol_1=""
-# grpc使用的会话层协议，0代表禁用，1代表VLESS，2代表VMess
+# grpcThe session layer protocol used, 0 means disabled, 1 means VLESS, 2 means VMess
 protocol_2=""
-# WebSocket使用的会话层协议，0代表禁用，1代表VLESS，2代表VMess
+# WebSocketThe session layer protocol used, 0 means disabled, 1 means VLESS, 2 means VMess
 protocol_3=""
 
 serviceName=""
@@ -69,9 +69,9 @@ xid_1=""
 xid_2=""
 xid_3=""
 
-#功能性函数：
-#定义几个颜色
-purple()                           #基佬紫
+#Functional function:
+#Define a few colors
+purple()                           #Gay Purple
 {
     echo -e "\\033[35;1m${*}\\033[0m"
 }
@@ -95,7 +95,7 @@ blue()                             #蓝色
 {
     echo -e "\\033[34;1m${*}\\033[0m"
 }
-#检查基本命令
+#Check basic commands
 check_base_command()
 {
     local i
@@ -126,51 +126,51 @@ check_sudo()
     fi
     return 0
 }
-#版本比较函数
+#Version comparison function
 version_ge()
 {
     test "$(echo -e "$1\\n$2" | sort -rV | head -n 1)" == "$1"
 }
-#检查脚本更新
+#Check for script updates
 check_script_update()
 {
     [ "$(md5sum "${BASH_SOURCE[0]}" | awk '{print $1}')" == "$(md5sum <(wget -O - "https://github.com/kirin10000/Xray-script/raw/main/Xray-TLS+Web-setup.sh") | awk '{print $1}')" ] && return 1 || return 0
 }
-#更新脚本
+#Update script
 update_script()
 {
     if wget -O "${BASH_SOURCE[0]}" "https://github.com/kirin10000/Xray-script/raw/main/Xray-TLS+Web-setup.sh" || wget -O "${BASH_SOURCE[0]}" "https://github.com/kirin10000/Xray-script/raw/main/Xray-TLS+Web-setup.sh"; then
-        green "脚本更新完成，请重新运行脚本！"
+        green "The script update is complete, please re-run the script！"
         exit 0
     else
-        red "更新脚本失败！"
+        red "Update script failed！"
         exit 1
     fi
 }
 ask_update_script()
 {
     if check_script_update; then
-        green "脚本可升级"
-        ask_if "是否升级脚本？(y/n)" && update_script
+        green "Script can be upgraded"
+        ask_if "Whether to upgrade the script？(y/n)" && update_script
     else
-        green "脚本已经是最新版本"
+        green "The script is already the latest version"
     fi
 }
 ask_update_script_force()
 {
     if check_script_update; then
-        green "脚本可升级"
-        if ask_if "是否升级脚本？(y/n)"; then
+        green "Script can be upgraded"
+        if ask_if "Whether to upgrade the script？(y/n)"; then
             update_script
         else
-            red "请先更新脚本"
+            red "Please update the script first"
             exit 0
         fi
     else
-        green "脚本已经是最新版本"
+        green "The script is already the latest version"
     fi
 }
-#安装单个重要依赖
+#Install a single important dependency
 test_important_dependence_installed()
 {
     local temp_exit_code=1
@@ -216,7 +216,7 @@ check_important_dependence_installed()
         read -s
     fi
 }
-#安装依赖
+#Installation dependencies
 install_dependence()
 {
     if [ $release == "ubuntu" ] || [ $release == "debian" ] || [ $release == "deepin" ] || [ $release == "other-debian" ]; then
@@ -318,7 +318,7 @@ check_nginx_update()
         return 0
     fi
 }
-#检查php更新
+#Check php update
 check_php_update()
 {
     local php_version_now
@@ -330,7 +330,7 @@ swap_on()
 {
     if [ $using_swap_now -ne 0 ]; then
         red    "开启swap错误发生"
-        green  "欢迎进行Bug report(https://github.com/kirin10000/Xray-script/issues)，感谢您的支持"
+        green  "欢迎进行Bug report(https://github.com/kirin10000/Xray-script/issues)，thank you for your support"
         yellow "按回车键继续或者Ctrl+c退出"
         read -s
     fi
@@ -387,14 +387,14 @@ turn_on_off_cloudreve()
 }
 let_change_cloudreve_domain()
 {
-    tyblue "----------- 请打开\"https://${domain_list[$1]}\"修改Cloudreve站点信息 ---------"
-    tyblue "  1. 登陆帐号"
-    tyblue "  2. 右上角头像 -> 管理面板"
-    tyblue "  3. 左侧的参数设置 -> 站点信息"
-    tyblue "  4. 站点URL改为\"https://${domain_list[$1]}\" -> 往下拉点击保存"
+    tyblue "----------- 请打开\"https://${domain_list[$1]}\"Modify Cloudreve site information ---------"
+    tyblue "  1. Login account"
+    tyblue "  2. Avatar in the upper right corner -> Management Panel"
+    tyblue "  3. Parameter setting on the left -> site information"
+    tyblue "  4. Site URL changed to \"https://${domain_list[$1]}\" -> Scroll down and click save"
     sleep 15s
     echo -e "\\n\\n"
-    tyblue "按两次回车键以继续。。。"
+    tyblue "Press enter twice to continue。。。"
     read -s
     read -s
 }
@@ -409,7 +409,7 @@ ask_if()
     [ $choice == y ] && return 0
     return 1
 }
-#卸载函数
+#Uninstall function
 remove_xray()
 {
     if ! bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ remove --purge; then
@@ -453,7 +453,7 @@ remove_cloudreve()
     rm -rf ${cloudreve_prefix}
     cloudreve_is_installed=0
 }
-#备份域名伪装网站
+#Back up the domain name to pretend to be a website
 backup_domains_web()
 {
     local i
@@ -467,7 +467,7 @@ backup_domains_web()
         fi
     done
 }
-#获取配置信息
+#Get configuration information
 get_config_info()
 {
     [ $is_installed -eq 0 ] && return
@@ -1515,21 +1515,21 @@ readPretend()
     while [ $queren -ne 1 ]
     do
         echo -e "\\n\\n\\n"
-        tyblue "------------------------------请选择伪装网站页面------------------------------"
-        green  " 1. Cloudreve (推荐)"
-        purple "     个人网盘"
-        green  " 2. Nextcloud (推荐)"
-        purple "     个人网盘，需安装php"
-        tyblue " 3. 403页面"
-        purple "     模拟网站后台"
-        red    " 4. 自定义静态网站 (不推荐)"
-        red    " 5. 自定义反向代理网页 (不推荐)"
+        tyblue "------------------------------Please choose a disguised website page------------------------------"
+        green  " 1. Cloudreve (recommend)"
+        purple "     Personal network disk"
+        green  " 2. Nextcloud (recommend)"
+        purple "     Personal network disk, need to install php"
+        tyblue " 3. 403 pages"
+        purple "     Simulate website backend"
+        red    " 4. Custom static website (not recommended)"
+        red    " 5. Custom reverse proxy page (not recommended)"
         echo
-        green  " 内存<128MB 建议选择 403页面"
-        green  " 128MB<=内存<1G 建议选择 Cloudreve"
-        green  " 内存>=1G 建议选择 Nextcloud 或 Cloudreve"
+        green  " Memory <128MB It is recommended to choose 403 pages"
+        green  " 128MB <=Memory<1G Recommended choice Cloudreve"
+        green  " Memory>=1G It is recommended to choose Nextcloud or Cloudreve"
         echo
-        yellow " 关于选择伪装网站的详细说明见：https://github.com/kirin10000/Xray-script#伪装网站说明"
+        yellow " For detailed instructions on choosing a camouflage website, see：https://github.com/kirin10000/Xray-script#伪装网站说明"
         echo
         pretend=""
         while [[ "$pretend" != "1" && "$pretend" != "2" && "$pretend" != "3" && "$pretend" != "4" && "$pretend" != "5" ]]
